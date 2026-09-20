@@ -110,6 +110,38 @@ export const HowIExplore: React.FC = () => {
             );
           })}
         </div>
+
+        {/* Dedicated Builder Compass Philosophy Ribbon */}
+        <div className="mt-8 p-4 sm:p-5 rounded-2xl theme-card border border-[var(--theme-card-border)] flex flex-col md:flex-row items-center justify-between gap-4 shadow-xs">
+          <div className="flex items-center gap-2.5">
+            <div className="p-2 rounded-xl bg-[var(--theme-accent-dim)] text-[var(--theme-accent)] flex-shrink-0">
+              <Compass className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="font-mono text-xs text-[var(--theme-accent)] font-semibold uppercase tracking-wider block">
+                BUILDER COMPASS
+              </span>
+              <span className="text-xs text-[var(--theme-text-muted)] font-sans">
+                Core tenets grounding everyday technical experiments.
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
+            <span className="px-3 py-1.5 rounded-lg bg-[var(--theme-card-bg)] border border-[var(--theme-card-border)] text-xs font-mono text-[var(--theme-text)] flex items-center gap-2">
+              <span className="text-[var(--theme-accent)] font-semibold">01</span>
+              <span>Curiosity-Led Engineering</span>
+            </span>
+            <span className="px-3 py-1.5 rounded-lg bg-[var(--theme-card-bg)] border border-[var(--theme-card-border)] text-xs font-mono text-[var(--theme-text)] flex items-center gap-2">
+              <span className="text-[var(--theme-accent)] font-semibold">02</span>
+              <span>Build to Learn</span>
+            </span>
+            <span className="px-3 py-1.5 rounded-lg bg-[var(--theme-card-bg)] border border-[var(--theme-card-border)] text-xs font-mono text-[var(--theme-text)] flex items-center gap-2">
+              <span className="text-[var(--theme-accent)] font-semibold">03</span>
+              <span>Clean Code & Detail</span>
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );
