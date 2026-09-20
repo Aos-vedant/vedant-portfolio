@@ -10,11 +10,6 @@ interface HeroProps {
   currently?: CurrentlyStatus;
 }
 
-interface HeroProps {
-  onOpenCommandPalette?: () => void;
-  currently?: CurrentlyStatus;
-}
-
 export const Hero: React.FC<HeroProps> = ({ currently: propCurrently }) => {
   const [localTime, setLocalTime] = useState('');
   const currently = propCurrently ?? PORTFOLIO_DATA.currently;
@@ -41,9 +36,9 @@ export const Hero: React.FC<HeroProps> = ({ currently: propCurrently }) => {
       id="hero"
       className="relative min-h-[90vh] flex flex-col justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-center relative z-10">
         {/* Left Column: Hero Declaration */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left z-10">
+        <div className="lg:col-span-7 min-w-0 flex flex-col items-start text-left z-10">
           {/* Role Capsule with Liquid Glass Styling */}
           <div className="flex items-center mb-5">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full liquid-glass-card shadow-xs">
@@ -55,9 +50,9 @@ export const Hero: React.FC<HeroProps> = ({ currently: propCurrently }) => {
           </div>
 
           {/* Title & Narrative Area */}
-          <div className="mb-8">
-            {/* Name in Architectural Display Typography */}
-            <h1 className="font-syne font-extrabold text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.92] text-[var(--theme-text)] mb-6">
+          <div className="mb-8 w-full">
+            {/* Name in Architectural Display Typography with Fluid Clamp Sizing */}
+            <h1 className="font-syne font-extrabold text-[clamp(2.5rem,4.8vw,5.5rem)] tracking-tight leading-[0.92] text-[var(--theme-text)] mb-6">
               <span className="block hover:translate-x-1 transition-transform">
                 VEDANT
               </span>
