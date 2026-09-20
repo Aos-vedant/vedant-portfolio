@@ -16,6 +16,7 @@ import {
   logoutAdmin,
   getAdminCreds,
   setAdminCreds,
+  resetAdminCredsToDefault,
   getStoredSocials,
   addSocialHandle,
   updateSocialHandle,
@@ -384,6 +385,16 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToPortfolio }) => {
     showToast('Admin credentials updated successfully!');
   };
 
+  const handleResetToDefaultCreds = () => {
+    if (window.confirm('Reset Admin credentials back to default (admin / vedant2026)?')) {
+      resetAdminCredsToDefault();
+      setUsernameInput('admin');
+      setPasswordInput('vedant2026');
+      setAuthError('');
+      showToast('Credentials reset back to default: admin / vedant2026');
+    }
+  };
+
   // -------------------------------------------------------------
   // LOGIN SCREEN (If not authenticated)
   // -------------------------------------------------------------
@@ -458,11 +469,21 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToPortfolio }) => {
             </button>
           </form>
 
-          {/* Helper hint for convenient demo access */}
-          <div className="mt-6 pt-5 border-t border-[var(--theme-card-border)] text-center">
+          {/* Reset button & credentials helper */}
+          <div className="mt-6 pt-5 border-t border-[var(--theme-card-border)] text-center space-y-2.5">
             <p className="text-xs text-[var(--theme-text-muted)] font-mono">
               Default Credentials: <code className="text-[var(--theme-accent)] font-bold">admin</code> / <code className="text-[var(--theme-accent)] font-bold">vedant2026</code>
             </p>
+            <div>
+              <button
+                type="button"
+                onClick={handleResetToDefaultCreds}
+                className="text-[11px] font-mono text-[var(--theme-accent)] hover:underline opacity-90 transition-opacity inline-flex items-center gap-1.5"
+              >
+                <RotateCcw className="w-3 h-3" />
+                <span>Forgot custom password? Reset back to default</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -174,6 +174,10 @@ export function setAdminCreds(username: string, password: string): void {
   localStorage.setItem(STORAGE_KEYS.CREDS, JSON.stringify({ username, password }));
 }
 
+export function resetAdminCredsToDefault(): void {
+  localStorage.removeItem(STORAGE_KEYS.CREDS);
+}
+
 export function isAdminAuthenticated(): boolean {
   return sessionStorage.getItem(STORAGE_KEYS.AUTH) === 'true';
 }
