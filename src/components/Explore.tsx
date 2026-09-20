@@ -64,7 +64,7 @@ export const Explore: React.FC = () => {
               Things I Like Exploring
             </h2>
             <p className="font-mono text-sm text-[var(--theme-text-muted)] mt-2">
-              No fake skill bars or arbitrary percentages — genuine areas of tech that spark my curiosity.
+              Focusing on the technologies, tools, and domains that spark my curiosity.
             </p>
           </div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[var(--theme-card-border)] bg-[var(--theme-card-bg)]/80 backdrop-blur-md text-xs font-mono text-[var(--theme-text-muted)] shadow-xs">
