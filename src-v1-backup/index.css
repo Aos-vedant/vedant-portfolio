@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    background-color: #08090c;
+    color: #f4f4f6;
+    overflow-x: hidden;
+    background-image: 
+      radial-gradient(at 15% 15%, rgba(56, 189, 248, 0.04) 0px, transparent 50%),
+      radial-gradient(at 85% 85%, rgba(99, 102, 241, 0.03) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(56, 189, 248, 0.22);
+    color: #38bdf8;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #08090c;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #181b26;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  /* Ultra-refined glass card utility */
+  .glass-card {
+    background: linear-gradient(145deg, rgba(18, 21, 31, 0.65) 0%, rgba(11, 13, 20, 0.8) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .glass-card-hover {
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .glass-card-hover:hover {
+    border-color: rgba(56, 189, 248, 0.28);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.7), 0 0 25px -4px rgba(56, 189, 248, 0.12);
+  }
+
+  .glass-nav {
+    background: rgba(8, 9, 12, 0.8);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

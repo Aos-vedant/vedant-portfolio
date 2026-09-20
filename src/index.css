@@ -1,0 +1,460 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root, [data-theme="atelier"] {
+    --theme-bg: #f7f5f0;
+    --theme-text: #121316;
+    --theme-text-muted: #5e616b;
+    --theme-card-bg: rgba(255, 255, 255, 0.94);
+    --theme-card-border: #e4e0d5;
+    --theme-card-hover-border: #ff4d2e;
+    --theme-card-shadow: 0 4px 20px -2px rgba(18, 19, 22, 0.04), 0 1px 3px 0 rgba(18, 19, 22, 0.02);
+    --theme-accent: #ff4d2e;
+    --theme-accent-hover: #e0391b;
+    --theme-accent-dim: rgba(255, 77, 46, 0.08);
+    --theme-badge-bg: #ece9df;
+    --theme-badge-text: #121316;
+    --theme-nav-bg: rgba(247, 245, 240, 0.88);
+    --theme-code-bg: #121316;
+    --theme-code-text: #f7f5f0;
+    --theme-selection-bg: rgba(255, 77, 46, 0.15);
+    --theme-selection-text: #ff4d2e;
+    --theme-liquid-glass-bg: rgba(247, 245, 240, 0.20);
+    --theme-liquid-glass-border: rgba(228, 224, 213, 0.40);
+    --theme-liquid-glass-sheen: rgba(255, 255, 255, 0.60);
+  }
+
+  [data-theme="obsidian"] {
+    --theme-bg: #090a0f;
+    --theme-text: #f4f4f7;
+    --theme-text-muted: #8b8f9e;
+    --theme-card-bg: rgba(18, 20, 28, 0.78);
+    --theme-card-border: rgba(255, 255, 255, 0.08);
+    --theme-card-hover-border: #38bdf8;
+    --theme-card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+    --theme-accent: #38bdf8;
+    --theme-accent-hover: #0ea5e9;
+    --theme-accent-dim: rgba(56, 189, 248, 0.12);
+    --theme-badge-bg: #141824;
+    --theme-badge-text: #38bdf8;
+    --theme-nav-bg: rgba(9, 10, 15, 0.85);
+    --theme-code-bg: #06070a;
+    --theme-code-text: #f4f4f7;
+    --theme-selection-bg: rgba(56, 189, 248, 0.25);
+    --theme-selection-text: #38bdf8;
+    --theme-liquid-glass-bg: rgba(9, 10, 15, 0.20);
+    --theme-liquid-glass-border: rgba(255, 255, 255, 0.08);
+    --theme-liquid-glass-sheen: rgba(255, 255, 255, 0.12);
+  }
+
+  [data-theme="nordic"] {
+    --theme-bg: #f0f4f9;
+    --theme-text: #0f172a;
+    --theme-text-muted: #475569;
+    --theme-card-bg: rgba(255, 255, 255, 0.9);
+    --theme-card-border: #cbd5e1;
+    --theme-card-hover-border: #0284c7;
+    --theme-card-shadow: 0 6px 24px -4px rgba(15, 23, 42, 0.06), 0 1px 3px 0 rgba(15, 23, 42, 0.03);
+    --theme-accent: #0284c7;
+    --theme-accent-hover: #0369a1;
+    --theme-accent-dim: rgba(2, 132, 199, 0.1);
+    --theme-badge-bg: #e2e8f0;
+    --theme-badge-text: #0369a1;
+    --theme-nav-bg: rgba(240, 244, 249, 0.88);
+    --theme-code-bg: #0f172a;
+    --theme-code-text: #f8fafc;
+    --theme-selection-bg: rgba(2, 132, 199, 0.15);
+    --theme-selection-text: #0284c7;
+    --theme-liquid-glass-bg: rgba(240, 244, 249, 0.20);
+    --theme-liquid-glass-border: rgba(203, 213, 225, 0.40);
+    --theme-liquid-glass-sheen: rgba(255, 255, 255, 0.65);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection {
+    background: var(--theme-selection-bg);
+    color: var(--theme-selection-text);
+  }
+
+  /* Custom minimal scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--theme-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(120, 120, 140, 0.25);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-accent);
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  /* Dynamic Theme Card */
+  .theme-card {
+    background: var(--theme-card-bg);
+    border: 1px solid var(--theme-card-border);
+    box-shadow: var(--theme-card-shadow);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .theme-card:hover {
+    border-color: var(--theme-card-hover-border);
+  }
+
+  /* Full Line Liquid Glass Top Bar (40% Transparency, Transparent Frosted Sheen) */
+  .liquid-glass-bar {
+    background: var(--theme-liquid-glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--theme-liquid-glass-border);
+    box-shadow: 
+      0 4px 30px -4px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 0 var(--theme-liquid-glass-sheen);
+  }
+
+  /* Liquid Glass Card (40% Transparency for Hero and Showcase containers) */
+  .liquid-glass-card {
+    background: var(--theme-liquid-glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--theme-liquid-glass-border);
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 0 var(--theme-liquid-glass-sheen);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .liquid-glass-card:hover {
+    border-color: var(--theme-card-hover-border);
+  }
+
+  /* Asymmetrical Studio Shapes */
+  .asym-card-tl {
+    border-radius: 0.5rem 1.75rem 1.75rem 1.75rem;
+  }
+  .asym-card-tr {
+    border-radius: 1.75rem 0.5rem 1.75rem 1.75rem;
+  }
+  .asym-card-br {
+    border-radius: 1.75rem 1.75rem 0.5rem 1.75rem;
+  }
+  .asym-card-bl {
+    border-radius: 1.75rem 1.75rem 1.75rem 0.5rem;
+  }
+
+  /* Blueprint Backgrounds */
+  .blueprint-grid {
+    background-image: linear-gradient(to right, var(--theme-card-border) 1px, transparent 1px),
+                      linear-gradient(to bottom, var(--theme-card-border) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .blueprint-dots {
+    background-image: radial-gradient(circle, var(--theme-card-border) 1.5px, transparent 1.5px);
+    background-size: 20px 20px;
+  }
+
+  .theme-nav {
+    background: var(--theme-nav-bg);
+    border-bottom: 1px solid var(--theme-card-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Tactile stamp pill */
+  .stamp-pill {
+    background: var(--theme-badge-bg);
+    color: var(--theme-badge-text);
+    border: 1px solid var(--theme-card-border);
+    transition: all 0.25s ease;
+  }
+  .stamp-pill:hover {
+    border-color: var(--theme-accent);
+  }
+
+  /* Animated Accent Button with Hover Shine Sheen */
+  .btn-accent {
+    position: relative;
+    background-color: var(--theme-accent);
+    color: #ffffff;
+    overflow: hidden;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.25s ease,
+                box-shadow 0.25s ease;
+  }
+  .btn-accent::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(25deg);
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .btn-accent:hover {
+    background-color: var(--theme-accent-hover);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 8px 20px -4px var(--theme-selection-bg);
+  }
+  .btn-accent:hover::after {
+    transform: translateX(350%) rotate(25deg);
+  }
+  .btn-accent:active {
+    transform: translateY(1px) scale(0.99);
+  }
+
+  /* Animated Secondary Button with Magnetic Sheen Sweep & Lift */
+  .btn-secondary {
+    position: relative;
+    background-color: var(--theme-card-bg);
+    color: var(--theme-text);
+    border: 1px solid var(--theme-card-border);
+    overflow: hidden;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                color 0.25s ease,
+                box-shadow 0.25s ease;
+  }
+  .btn-secondary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(25deg);
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .btn-secondary:hover {
+    border-color: var(--theme-accent);
+    color: var(--theme-accent);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 6px 20px -4px var(--theme-selection-bg);
+  }
+  .btn-secondary:hover::after {
+    transform: translateX(350%) rotate(25deg);
+  }
+  .btn-secondary:active {
+    transform: translateY(1px) scale(0.99);
+  }
+
+  /* Universal Sheen Effect for any interactive button or pill */
+  .btn-sheen {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                color 0.25s ease,
+                box-shadow 0.25s ease;
+  }
+  .btn-sheen::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(25deg);
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .btn-sheen:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 6px 16px -4px var(--theme-selection-bg);
+  }
+  .btn-sheen:hover::after {
+    transform: translateX(350%) rotate(25deg);
+  }
+  .btn-sheen:active {
+    transform: translateY(1px) scale(0.99);
+  }
+
+  /* High-Contrast Interactive Terminal Shell (Always Crisp in Light & Dark Themes) */
+  .terminal-shell {
+    background-color: #0d0f17 !important;
+    color: #f8fafc !important;
+    border: 1px solid rgba(0, 0, 0, 0.85);
+    box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease;
+  }
+  .terminal-shell:hover {
+    border-color: var(--theme-accent);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--theme-accent);
+  }
+
+  /* Realistic Water Droplet & Ripple Effect (Hero Page Only, 3-Second Fading Trail) */
+  .water-drop {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border-radius: 46% 54% 52% 48% / 48% 52% 48% 52%;
+    animation: waterDropFadeOut 3s cubic-bezier(0.2, 0.8, 0.25, 1) forwards;
+  }
+
+  /* Water droplet top-left specular highlight reflection */
+  .water-drop::before {
+    content: '';
+    position: absolute;
+    top: 18%;
+    left: 20%;
+    width: 28%;
+    height: 20%;
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.4) 60%,
+      transparent 100%
+    );
+    transform: rotate(-35deg);
+    pointer-events: none;
+  }
+
+  /* Secondary subtle bottom-right water caustic reflection */
+  .water-drop::after {
+    content: '';
+    position: absolute;
+    bottom: 16%;
+    right: 18%;
+    width: 22%;
+    height: 14%;
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.5) 0%,
+      transparent 80%
+    );
+    transform: rotate(-30deg);
+    pointer-events: none;
+  }
+
+  @keyframes waterDropFadeOut {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.65);
+    }
+    6% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    /* Fade out begins at 1.8 seconds (60% of 3.0s) */
+    60% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+    82% {
+      opacity: 0.45;
+      transform: translate(-50%, -50%) scale(1.16);
+    }
+    /* Complete vanish at 3.0 seconds (100%) */
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.28);
+    }
+  }
+
+  /* Light themes: Crystal water bead with surface tension refraction */
+  :root .water-drop,
+  [data-theme="atelier"] .water-drop,
+  [data-theme="nordic"] .water-drop {
+    background: radial-gradient(
+      circle at 40% 35%,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(235, 238, 245, 0.25) 45%,
+      rgba(15, 20, 30, 0.08) 80%,
+      rgba(15, 20, 30, 0.16) 100%
+    );
+    backdrop-filter: blur(3.5px) saturate(150%) contrast(106%);
+    -webkit-backdrop-filter: blur(3.5px) saturate(150%) contrast(106%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 
+      inset 0 2px 3px 0 rgba(255, 255, 255, 0.85),
+      inset 0 -2px 3px 0 rgba(10, 15, 25, 0.18),
+      0 3px 8px -1px rgba(15, 20, 30, 0.2),
+      0 1px 3px 0 rgba(15, 20, 30, 0.12);
+  }
+
+  /* Dark themes: Luminous glowing cyan water bead with specular caustics */
+  [data-theme="obsidian"] .water-drop {
+    background: radial-gradient(
+      circle at 40% 35%,
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(56, 189, 248, 0.15) 50%,
+      rgba(15, 23, 42, 0.3) 85%,
+      rgba(56, 189, 248, 0.25) 100%
+    );
+    backdrop-filter: blur(4px) saturate(190%) contrast(110%);
+    -webkit-backdrop-filter: blur(4px) saturate(190%) contrast(110%);
+    border: 1px solid rgba(186, 230, 253, 0.45);
+    box-shadow: 
+      inset 0 2px 4px 0 rgba(255, 255, 255, 0.7),
+      inset 0 -2px 4px 0 rgba(0, 0, 0, 0.5),
+      0 4px 12px -1px rgba(0, 0, 0, 0.5),
+      0 0 16px -2px rgba(56, 189, 248, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
